@@ -1,0 +1,29 @@
+{
+  "name": "blog-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basbilijam/blog-app.git"
+  },
+  "author": "Bas Bilijam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/basbilijam/blog-app/issues"
+  },
+  "homepage": "https://github.com/basbilijam/blog-app#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-session": "^1.15.1",
+    "method-override": "^2.3.7",
+    "morgan": "^1.8.1",
+    "pg": "^6.1.2",
+    "pug": "^2.0.0-beta11",
+    "sequelize": "^3.30.2"
+  }
+}

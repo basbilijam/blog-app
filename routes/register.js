@@ -10,19 +10,20 @@ const db = require('../modules/database')
 router.use(bodyParser.urlencoded({ extended: false }))
 
 // setting up route ro register page
-router.get('/add-post', (req, res) => {
-  res.render('add-post')
+router.get('/register', (req, res) => {
+  res.render('register')
 })
 
-// posting new message to database
-router.post('/add-post', (req, res) => {
-  const newPost = {
-    title: req.body.title,
-    body: req.body.body,
+// posting new user to database
+router.post('/register', (req, res) => {
+  const newUser = {
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password
   }
   console.log(req.body)
-  db.Post.create(newPost).then()
-  console.log(newPost)
+  db.User.create(newUser).then()
+  console.log(newUser)
   res.redirect('/')
 })
 

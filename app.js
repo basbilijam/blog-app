@@ -3,9 +3,20 @@ const express = require ('express')
 const sequelize = require ('sequelize')
 const fs = require ('fs')
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
+const session = require ('express-session')
+
 
 // setting up express app
 const app = express()
+
+// Activate the session app wide
+app.use(session({
+  secret: 'super secure',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false }
+}))
 
 // connecting to databse
 const db = require(__dirname + '/modules/database')
@@ -19,10 +30,14 @@ const logIn = require(__dirname + '/routes/log-in')
 app.set('view engine', 'pug')
 app.set( 'views', __dirname + '/views' )
 
+app.use('/', express.static( __dirname + '/public') )
+app.use(morgan('dev'));
 // setting the app to use routes
+
 app.use('/', register)
 app.use('/', addPost)
 app.use('/', logIn)
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 

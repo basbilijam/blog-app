@@ -1,0 +1,30 @@
+body {
+  font-family: "Futura";
+}
+
+nav {
+  z-index: 1;
+  position: fixed;
+}
+
+.brand-logo {
+  color: black;
+}
+
+nav li a {
+  color: black;
+}
+
+.main-header {
+  text-align: center;
+}
+
+img {
+  width: 100%;
+  height: 75%;
+}
+
+.card {
+    margin: 0 25% 0 25%;
+    width: 50%;
+  }

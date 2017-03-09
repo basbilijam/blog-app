@@ -25,3 +25,20 @@ Submit this document in a text file as part of your application.
 Your routes must be "RESTful". See slide 4 of the http requests lecture: Link. Also look at the RESTful routing example in the node sample apps.
 You must use Sequelize for this assignment. Your connection string must once again be read from the environment variables you set up for the Bulletin Board assignment.
 Commit well - each commit should ideally be a new piece of functionality.
+
+
+
+# To Do
+Make sure a user stays logged in.
+- Sessions?
+
+Change log-in link to log out when logged in
+- Destroy session?
+
+Set up a page for show 1 post.
+- Add comment section for logged in user
+- If own post —> delete and edit function
+
+Move add post option to logged in section
+
+Beautification

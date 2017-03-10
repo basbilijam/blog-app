@@ -24,10 +24,18 @@ router.get('/log-in', (req, res) => {
 router.get('/profile', (req, res) => {
   if (req.session.user) {
     db.User.findOne( {
+      // Grab the looged in user
       where: {
         id: req.session.user.id
       },
-      include: [ db.Post]
+      // Include posts by the user
+      include: [
+        { model: db.Post, include: [
+          // Of the post include comments
+          // Of the comments include their authors
+          { model: db.Comment, include: [ db.User ] }
+        ] }
+      ]
     }).then( theuser => {
       console.log('user is' +theuser)
       res.render('profile', {

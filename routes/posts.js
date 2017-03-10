@@ -21,18 +21,25 @@ router.use(methodOverride( (req, res) => {
 
 // setting up route ro register page
 router.get('/add-post', (req, res) => {
-  res.render('add-post')
+  res.render('add-post', {
+    user: req.session.user
+  })
 })
 
 //show 1 post the unique id
 router.get('/show-1-post/:id', (request, response) => {
+  console.log('Checking for post with id ' + request.params.id)
   db.Post.findOne({
     where: {
       id: request.params.id
     },
-    include: [db.Comment]
+    include: [
+      { model: db.Comment, include: [db.User] },
+      { model: db.User }
+    ]
   }).then( thepost => {
-    response.render('show-1-post', { post: thepost })
+    console.log( 'Found the post ', thepost.get({plain: true}) )
+    response.render('show-1-post', { post: thepost, user: request.session.user })
   })
 })
 
@@ -63,15 +70,37 @@ router.post('/add-comment', (req, res) => {
 })
 
 // trying to make a delete funtion
-router.get('/delete', (req, res) => {
+router.get('/delete/:id', (req, res) => {
   console.log(req.params.id);
   db.Post.destroy({
     where: {
       id: req.params.id
     }
   }).then(() => {
-    res.redirect('/');
-  });
-});
+    res.redirect('/profile')
+  })
+})
+
+// route for edit page
+router.get('/edit/:id', (req, res) => {
+  db.Post.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then((post) => {
+    res.render('edit', { post: post, user: req.session.user })
+  })
+})
+
+// edit functionality
+router.put('/edit/:id', (req, res) => {
+  db.Post.update(req.body, {
+    where: {
+      id: req.params.id,
+    }
+  }).then((post) => {
+    res.redirect('/')
+  })
+})
 
 module.exports = router

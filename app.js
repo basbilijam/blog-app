@@ -43,10 +43,16 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // rendering all posts in database
 app.get('/', (req, res) => {
-  db.Post.findAll().then( (posts) => {
+  db.Post.findAll( {
+    include: [
+      { model: db.Comment, include: [db.User] },
+      { model: db.User }
+    ]
+  }).then( (posts) => {
     console.log(posts)
     res.render('index', {
-      posts: posts
+      posts: posts,
+      user: req.session.user
     })
   })
 })

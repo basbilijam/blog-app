@@ -38,35 +38,39 @@ db
   .sync({ force: true })
   .then( (err) => {
     console.log('It worked!')
-    User.create( {
-			username: "Bas",
-			email: "bas@basb.com",
-			password: "basb"
-		} ),
-    User.create ( {
-      username: "Klaas",
-      email: "klaas@klaas.com",
-      password: "klaas"
+    return Promise.all ([
+      User.create( {
+  			username: "Bas",
+  			email: "bas@basb.com",
+  			password: "basb"
+		  } ),
+      User.create ( {
+        username: "Klaas",
+        email: "klaas@klaas.com",
+        password: "klaas"
+      })
+    ])
+  } )
+  .then ( users => {
+      return Post.create ( {
+        title: 'lorem',
+        body: 'lorem',
+        userId: 1
+      })
     })
-  }, (err) => {
-    console.log('An error occurred while creating the table:', err);
-  }).then (Users => {
-    return Post.create ( {
-      title: 'lorem',
-      body: 'lorem',
-      userId: 1
-    }).then (Users => {
+  .then ( apost => {
       return Post.create ( {
       title: 'lorem2',
       body: 'lorem2',
       userId: 1
-    }).then (Users => {
+  })
+  .then ( anotherpost => {
       return Post.create ( {
       title: 'lorem3',
       body: "lorem4",
       userId: 2
-    })
-    }).catch( console.log.bind( console ) )
+  })
+  .catch( console.log.bind( console ) )
   })
 })
 

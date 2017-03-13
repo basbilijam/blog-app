@@ -5,24 +5,27 @@ html
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css")
     link(rel="stylesheet" href="/custom.css")
   body
-    nav
-      div(class="nav-wrapper")
-        a(href="/" class="brand-logo") Home
-        ul(id="nav-mobile" class="right hide-on-med-and-down")
-          if user
-            li
-              a(href="/profile") PROFILE
-            li
-              a(href="/add-post") NEW POST
-            li
-              a(href="/logout") LOGOUT
-          else
-            li
-              a(href="/log-in") LOGIN
-            li
-              a(href="/register") REGISTER
+    div(class="navbar-fixed")
+      nav
+        div(class="nav-wrapper")
+          a(href="/" class="brand-logo") Home
+          ul(id="nav-mobile" class="right hide-on-med-and-down")
+            if user
+              li
+                a(href="/profile") PROFILE
+              li
+                a(href="/add-post") NEW POST
+              li
+                a(href="/logout") LOGOUT
+            else
+              li
+                a(href="/log-in") LOGIN
+              li
+                a(href="/register") REGISTER
 
-    img(src="/images/intro.jpg")
+    div(id="intro_image")
+      h1 Let's blog!
+
     script(src="https://code.jquery.com/jquery-2.1.1.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js")
 

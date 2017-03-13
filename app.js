@@ -30,10 +30,13 @@ const logIn = require(__dirname + '/routes/log-in')
 app.set('view engine', 'pug')
 app.set( 'views', __dirname + '/views' )
 
+// setting static folder
 app.use('/', express.static( __dirname + '/public') )
-app.use(morgan('dev'));
-// setting the app to use routes
 
+// using morgan middleware for debugging
+app.use(morgan('dev'));
+
+// setting the app to use routes
 app.use('/', register)
 app.use('/', addPost)
 app.use('/', logIn)
@@ -41,13 +44,15 @@ app.use('/', logIn)
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// rendering all posts in database
+// rendering all posts in database as the homepage
 app.get('/', (req, res) => {
   db.Post.findAll( {
+    // including both the users that posted the message, as well as the comments and users that posted the comments
     include: [
       { model: db.Comment, include: [db.User] },
       { model: db.User }
-    ]
+    ],
+    order: [['createdAt', 'DESC']]
   }).then( (posts) => {
     console.log(posts)
     res.render('index', {

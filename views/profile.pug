@@ -3,7 +3,7 @@ block content
   h3 Hello, #{user.username}! These are your posts:
   ul
     each post in user.posts
-      .card
+      .card(col s6 z-depth-1 grey lighten-4 row)
         li(class="card-title")
         a(href="/show-1-post/"+post.id) Title:  #{post.title}
         p(class="card-text") Message: #{post.body}

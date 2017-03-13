@@ -1,6 +1,6 @@
 extends ./application.pug
 block content
-  .card
+  .card(class="col s6 z-depth-1 grey lighten-4 row")
     h4(class="card-title") Title:  #{post.title}
     p(class="card-text") Message: #{post.body}
     p(class="card-text") User: #{post.user.username}

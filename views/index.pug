@@ -4,7 +4,7 @@ block content
   ul
     each post in posts
       div(class="col s12 m6")
-        .card
+        .card(class="col s6 z-depth-1 grey lighten-4 row")
           li(class="card-title")
           a(href="/show-1-post/"+post.id) Title:  #{post.title}
           p(class="card-text") Message: #{post.body}

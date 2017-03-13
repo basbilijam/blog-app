@@ -24,7 +24,7 @@ router.get('/log-in', (req, res) => {
 router.get('/profile', (req, res) => {
   if (req.session.user) {
     db.User.findOne( {
-      // Grab the looged in user
+      // Grab the logged in user
       where: {
         id: req.session.user.id
       },
@@ -47,7 +47,7 @@ router.get('/profile', (req, res) => {
   }
 })
 
-// log in function + setting session
+// log in function + setting the session
 router.post('/log-in', (req, res) => {
   db.User.findOne( {
     where: {

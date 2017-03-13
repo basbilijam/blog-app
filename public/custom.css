@@ -4,7 +4,7 @@ body {
 
 nav {
   z-index: 1;
-  position: fixed;
+  background: transparent;
 }
 
 nav .brand-logo {
@@ -13,6 +13,57 @@ nav .brand-logo {
 
 nav li a {
   color: black;
+}
+
+#intro_image {
+  width: 100%;
+  height: 75%;
+  background: url("../images/intro2.jpg") no-repeat center center;
+}
+
+#intro_image h1 {
+  text-align: center;
+  left: 50%;
+  top: 20%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: absolute;
+  color: white;
+}
+
+#loginheader {
+  text-align: center;
+}
+
+#login {
+  text-align: center;
+  margin-left: 25%;
+  margin-right: 25%;
+  display: inline-block;
+  padding: 32px 48px 0px 48px;
+  border: 1px solid #EEE;
+}
+
+.row .col.s6 {
+  margin-left: 25%;
+}
+
+#username {
+  text-align: center;
+
+}
+
+#password {
+  text-align: center;
+}
+
+#email {
+  text-align: center;
+}
+
+/* new-post page */
+#body {
+  height:25%;
 }
 
 .main-header {

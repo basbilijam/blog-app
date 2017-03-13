@@ -26,13 +26,14 @@ router.get('/add-post', (req, res) => {
   })
 })
 
-//show 1 post the unique id
+// render the show 1 post page through the unique id
 router.get('/show-1-post/:id', (request, response) => {
   console.log('Checking for post with id ' + request.params.id)
   db.Post.findOne({
     where: {
       id: request.params.id
     },
+    // including comments with user that wrote comment
     include: [
       { model: db.Comment, include: [db.User] },
       { model: db.User }
@@ -69,7 +70,7 @@ router.post('/add-comment', (req, res) => {
   })
 })
 
-// trying to make a delete funtion
+// delete funtion
 router.get('/delete/:id', (req, res) => {
   console.log(req.params.id);
   db.Post.destroy({

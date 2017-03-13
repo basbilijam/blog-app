@@ -1,9 +1,9 @@
 extends ./application.pug
 block content
-  h3 Register as a new user!
+  h3(id="loginheader") Register as a new user!
 
   div(class="row")
-  form(class="col s12" action="/register" method="post")
+  form(id="login" class="col s6 z-depth-1 grey lighten-4 row" action="/register" method="post")
     div(class="row")
       div(class="col s6")
         label(for="email") Email

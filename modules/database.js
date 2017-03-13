@@ -13,6 +13,7 @@ const db = new sequelize( 'blog', 'bas', 'bas', {
 const User = db.define( 'user', {
 	username: sequelize.STRING,
 	email: sequelize.STRING,
+  // Password not hashed yet!!!
 	password: sequelize.STRING
 } )
 
@@ -27,6 +28,7 @@ const Comment = db.define( 'comment', {
 	body: sequelize.STRING
 } )
 
+// setting db relations
 Post.belongsTo( User )
 User.hasMany( Post )
 Comment.belongsTo( User)
@@ -34,8 +36,9 @@ Comment.belongsTo( Post)
 User.hasMany ( Comment)
 Post.hasMany( Comment)
 
+// syncing database and creating some test users
 db
-  .sync({ force: true })
+  .sync({ force: false })
   .then( (err) => {
     console.log('It worked!')
     return Promise.all ([
@@ -74,33 +77,7 @@ db
   })
 })
 
-/*
-db.sync( { force: true } ).then( f => {
-	// Make a Promise all array that starts making users at the same time ( so not in order )
-	return Promise.all( [
-		User.create( {
-			name: "Bas",
-			email: "bas@basb.com",
-			password: "basb"
-		} )
-	] )
-} ).then( Users => {
-	// users contains an array of the results of the above Promise.all
-	console.log( Users )
-	// This post promise is returned to the next .then
-	return Post.create( {
-		title: "demopost",
-		body: "demopostcontent"
-	} )
-} ).then( user => {
-	// We here use the resulting user to create a post on their behalf
-	return user.createPost( {
-		title: "demo",
-		body: "demo"
-	} ).catch( console.log.bind( console ) )
-})
-*/
-
+// exporting database as a module
 module.exports = {
   conn: db,
   User:User,

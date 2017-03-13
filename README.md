@@ -29,16 +29,6 @@ Commit well - each commit should ideally be a new piece of functionality.
 
 
 # To Do
-Make sure a user stays logged in.
-- Sessions?
-
-Change log-in link to log out when logged in
-- Destroy session?
-
-Set up a page for show 1 post.
-- Add comment section for logged in user
-- If own post —> delete and edit function
-
-Move add post option to logged in section
-
-Beautification
+- Hashing or encrypting passwords
+- Further beautification
+- Make the app more modular

@@ -3,7 +3,7 @@ const sequelize = require ('sequelize')
 const pg = require('pg')
 const express = require ('express')
 
-const db = new sequelize( 'blog', 'bas', 'bas', {
+const db = new sequelize( 'blog', process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
   host: 'localhost',
   dialect: 'postgres'
 } )
